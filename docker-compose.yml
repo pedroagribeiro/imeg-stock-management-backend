@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  stock_management_database:
+    build:
+      context: ./database/
+    container_name: stock-management-database
+    ports:
+      - "5432:5432"
