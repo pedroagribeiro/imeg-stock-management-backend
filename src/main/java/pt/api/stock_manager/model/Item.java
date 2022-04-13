@@ -1,14 +1,13 @@
 package pt.api.stock_manager.model;
 
-
-import lombok.Data;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
 @Entity
 @Table(name = "items")
+@Proxy(lazy = false)
 public class Item {
 
     @Id
@@ -21,6 +20,15 @@ public class Item {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
+    public Item() {
+
+    }
+
+    public Item(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
 
     public long getId() {
         return id;
