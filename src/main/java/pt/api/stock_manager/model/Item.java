@@ -21,6 +21,9 @@ public class Item {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @Column(name = "unit", nullable = false)
+    private String unit;
+
     public Item() {
 
     }
@@ -54,16 +57,24 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && quantity == item.quantity && Objects.equals(name, item.name);
+        return id == item.id && quantity == item.quantity && Objects.equals(name, item.name) && Objects.equals(unit, item.unit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity);
+        return Objects.hash(id, name, quantity, unit);
     }
 }

@@ -15,6 +15,9 @@ public class WorkSite {
     @SequenceGenerator(name = "work_site_id_seq", sequenceName = "work_site_id_seq", allocationSize = 1)
     private long id;
 
+    @Column(name = "code", nullable = false)
+    private int code;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -35,6 +38,10 @@ public class WorkSite {
     public void setId(long id) {
         this.id = id;
     }
+
+    public int getCode() { return code;}
+
+    public void setCode(int code) { this.code = code;}
 
     public String getName() {
         return name;
@@ -57,11 +64,11 @@ public class WorkSite {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WorkSite workSite = (WorkSite) o;
-        return id == workSite.id && Objects.equals(name, workSite.name) && Objects.equals(location, workSite.location);
+        return id == workSite.id && code == workSite.code && Objects.equals(name, workSite.name) && Objects.equals(location, workSite.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, location);
+        return Objects.hash(id, code, name, location);
     }
 }

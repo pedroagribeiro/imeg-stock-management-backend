@@ -37,12 +37,12 @@ public class ItemsController {
        return new ResponseEntity("The item has been created", HttpStatus.CREATED);
     }
 
-    @GetMapping("/stock/{item_id}")
+    @GetMapping("/{item_id}")
     public ResponseEntity<?> get_item_stock(@PathVariable("item_id") long item_id) {
         Item item = null;
         if(this.itemsRepository.existsById(item_id)) item = this.itemsRepository.findById(item_id).get();
         if(item == null) return new ResponseEntity<>("There is no registered item with the provided id", HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(item.getQuantity(), HttpStatus.OK);
+        return new ResponseEntity<>(item, HttpStatus.OK);
     }
 
     @PostMapping("/add/item/{item_id}/work_site/{work_site_id}/quantity/{quantity}")
