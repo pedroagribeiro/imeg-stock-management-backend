@@ -17,6 +17,7 @@ CREATE TABLE items_by_work_site (
     item_id         integer             NOT NULL,
     work_site_id    integer             NOT NULL,
     quantity        integer             NOT NULL,
+    date            timestamp           NOT NULL,
     CONSTRAINT fk_item FOREIGN KEY(item_id) REFERENCES items(id),
     CONSTRAINT fk_work_site FOREIGN KEY(work_site_id) REFERENCES work_sites(id)
 );

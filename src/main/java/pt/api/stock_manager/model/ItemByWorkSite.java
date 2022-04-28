@@ -3,6 +3,8 @@ package pt.api.stock_manager.model;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +28,9 @@ public class ItemByWorkSite {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @Column(name = "date", nullable = false)
+    private LocalDateTime date;
+
     public ItemByWorkSite() {
 
     }
@@ -34,6 +39,7 @@ public class ItemByWorkSite {
         this.item = item;
         this.workSite = workSite;
         this.quantity = quantity;
+        this.date = LocalDateTime.now();
     }
 
     public long getId() {
@@ -68,16 +74,30 @@ public class ItemByWorkSite {
         this.quantity = quantity;
     }
 
+    public LocalDateTime getDate() {
+        return this.date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemByWorkSite that = (ItemByWorkSite) o;
-        return id == that.id && quantity == that.quantity && Objects.equals(item, that.item) && Objects.equals(workSite, that.workSite);
+        return (
+                id == that.id &&
+                quantity == that.quantity &&
+                Objects.equals(item, that.item) &&
+                Objects.equals(workSite, that.workSite) &&
+                Objects.equals(date, that.date)
+        );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, item, workSite, quantity);
+        return Objects.hash(id, item, workSite, quantity, date);
     }
 }
